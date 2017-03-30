@@ -1,0 +1,30 @@
+{
+  "id": "storm-nimbus",
+  "cmd": "./bin/run-with-marathon.sh",
+  "cpus": 1,
+  "mem": 1024,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "localhost:5000/storm",
+      "network": "HOST",
+      "forcePullImage": true
+    }
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "portIndex": 0,
+      "path": "/",
+      "gracePeriodSeconds": 120,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "requirePorts": true,
+  "ports": [
+    31080,
+    31081
+  ]
+}
