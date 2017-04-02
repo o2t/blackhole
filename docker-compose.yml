@@ -61,6 +61,7 @@ marathon:
 slave:
   image: mesosphere/mesos-slave:1.1.1
   net: host
+  pid: host
   environment:
     MESOS_MASTER: zk://localhost:2181/mesos
     MESOS_HOSTNAME: localhost

@@ -10,8 +10,8 @@ storm.zookeeper.servers:
 # Worker resources
 topology.mesos.worker.cpu: 1.0
 # Worker heap with 25% overhead
-topology.mesos.worker.mem.mb: 512
-worker.childopts: "-Xmx384m"
+topology.mesos.worker.mem.mb: 1024
+worker.childopts: "-Xmx768m"
 
 # Supervisor resources
 topology.mesos.executor.cpu: 0.1

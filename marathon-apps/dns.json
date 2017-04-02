@@ -1,0 +1,38 @@
+{
+  "id": "dns",
+  "cpus": 0.5,
+  "mem": 256,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "type": "DOCKER",
+    "volumes": [
+      {
+        "containerPath": "/config.json",
+        "hostPath": "config.json",
+        "mode": "RO"
+      }
+    ],
+    "docker": {
+      "image": "mesosphere/mesos-dns:0.5.2-bind-utils",
+      "network": "HOST",
+      "forcePullImage": false
+    }
+  },
+  "env": {
+    "LOCAL_IP": "127.0.0.1",
+    "MESOS_ZK": "zk://localhost:2181/mesos",
+    "MESOS_DNS_EXTERNAL_SERVERS": "8.8.8.8,8.8.4.4"
+  },
+  "ports": [
+    53,
+    8123
+  ],
+  "uris": [
+    "http://localhost:81/mesos-dns/config.json"
+  ],
+  "args": [
+    "/usr/bin/mesos-dns",
+    "-config=/config.json"
+  ]
+}
