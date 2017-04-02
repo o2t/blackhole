@@ -7,10 +7,15 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "localhost:5000/storm",
+      "image": "mesos/storm:0.2.1-1.0.2-1.1.0-jdk8",
       "network": "HOST",
       "forcePullImage": true
-    }
+    },
+    "volumes": [{
+      "hostPath": "storm.yaml",
+      "containerPath": "/opt/storm/conf/storm.yaml",
+      "mode": "RO"
+    }]
   },
   "healthChecks": [
     {
@@ -26,5 +31,8 @@
   "ports": [
     31080,
     31081
+  ],
+  "uris": [
+    "http://localhost:81/storm/storm.yaml"
   ]
 }
